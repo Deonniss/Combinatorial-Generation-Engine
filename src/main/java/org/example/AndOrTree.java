@@ -10,6 +10,14 @@ public class AndOrTree {
         this.root = null;
     }
 
+    public OrNode getOrNodeByIndex(int index) {
+        AndNode temp = root;
+        for (int i = 0; i < index; i++) {
+            temp = temp.right;
+        }
+        return temp.left;
+    }
+
     public void create(List<List<Integer>> tree) {
         AndNode tempRoot = null;
         for (List<Integer> branch : tree) {
@@ -20,19 +28,13 @@ public class AndOrTree {
                 tempRoot.right = new AndNode();
                 tempRoot = tempRoot.right;
             }
-            tempRoot.left = insertOR();
+            tempRoot.left = new OrNode();
+            int order = 0;
             for (Integer value : branch) {
-                tempRoot.left.children.add(insertNONE(value));
+                tempRoot.left.children.add(new Node(order++, value));
             }
         }
-    }
-
-    private Node insertNONE(int value) {
-        return new Node(value);
-    }
-
-    private OrNode insertOR() {
-        return new OrNode();
+        tempRoot.right = new AndNode();
     }
 
     @Override
@@ -73,13 +75,46 @@ class OrNode {
 
 class Node {
     int value;
+    int order;
 
-    public Node(int value) {
+    public Node(int order, int value) {
         this.value = value;
+        this.order = order;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        return "{" +
+                "value=" + value +
+                ", order=" + order +
+                '}';
+    }
+}
+
+enum NodeType {
+    AND, OR, NONE
+}
+
+class Root {
+    private NodeType type;
+    private int andId;
+    private int orId;
+
+    public Root(NodeType type, int andId, int orId) {
+        this.type = type;
+        this.andId = andId;
+        this.orId = orId;
+    }
+
+    public NodeType getType() {
+        return type;
+    }
+
+    public int getAndId() {
+        return andId;
+    }
+
+    public int getOrId() {
+        return orId;
     }
 }
