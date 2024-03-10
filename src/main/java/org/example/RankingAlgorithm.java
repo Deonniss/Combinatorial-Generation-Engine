@@ -28,10 +28,7 @@ public class RankingAlgorithm {
     public static List<Integer> unRank(BigInteger r, AndOrTree tree) {
         Stack<NodeContainer> stack = new Stack<>();
         stack.add(new NodeContainer(r, new Root(NodeType.AND, 0, 0)));
-
         List<Integer> v = new ArrayList<>();
-
-
         while (!stack.empty()) {
             NodeContainer node = stack.pop();
             BigInteger l = node.getRank();
@@ -57,9 +54,6 @@ public class RankingAlgorithm {
                                 count = count.multiply(BigInteger.valueOf(node1.children.size()));
                                 node1 = tree.getOrNodeByIndex(++id);
                             }
-
-//                            orNode = tree.getOrNodeByIndex(node.getRoot().getOrId());
-
                             l1 = l.mod(count);
                             newNode = new NodeContainer(l1, new Root(NodeType.AND,
                                     node.getRoot().getAndId() + 1, node.getRoot().getOrId()));
@@ -81,8 +75,7 @@ public class RankingAlgorithm {
                 }
             }
         }
-
-        return v;
+        return v.reversed();
     }
 }
 

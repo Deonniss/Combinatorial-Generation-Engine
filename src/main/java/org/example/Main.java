@@ -45,16 +45,16 @@ public class Main {
     }
 
     private static void hardTest() {
-        int size = 100;
+        int size = 1_000;
         AndOrTree tree = new AndOrTree();
         List<List<Integer>> lists = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1_000; i++) {
             lists.add(genList(size, size));
         }
         tree.create(lists);
-        System.out.println(tree);
+//        System.out.println(tree);
 //        List<Integer> list = genList(size);
-        List<Integer> list = genList(100, 100);
+        List<Integer> list = genList(1_000, 1_000);
         System.out.println(list);
         Root root = new Root(NodeType.AND, 0, 0);
 
