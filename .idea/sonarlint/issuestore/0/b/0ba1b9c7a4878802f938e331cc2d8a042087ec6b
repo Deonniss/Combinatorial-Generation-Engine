@@ -1,12 +1,0 @@
-
-:
-java:S2119
-"Save and re-use this "Random".(¼ÝÅf8°ŒÉ¼â1
-L	java:S106/"+Replace this use of System.out by a logger.(öý¦±úÿÿÿÿ8µŒÉ¼â1
-G	java:S1068"+Replace this use of System.out by a logger.(ÍøÎÉ8µŒÉ¼â1
-L	java:S1069"+Replace this use of System.out by a logger.(‡ä½Åúÿÿÿÿ8µŒÉ¼â1
-]	java:S125;"<This block of commented-out lines of code should be removed.(’ý“Šùÿÿÿÿ8þ‹Ì¼â1
-V
-java:S3400S"9Remove this method and declare a constant for this value.(”·³›8¹ŒÉ¼â1
-F
-java:S1144R")Remove this unused private "rank" method.(á¶ê8¹ŒÉ¼â1
