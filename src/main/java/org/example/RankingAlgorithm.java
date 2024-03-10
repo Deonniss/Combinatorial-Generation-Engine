@@ -58,7 +58,7 @@ public class RankingAlgorithm {
                             newNode = new NodeContainer(l1, new Root(NodeType.AND,
                                     node.getRoot().getAndId() + 1, node.getRoot().getOrId()));
                             stack.add(newNode);
-                            l = l.divide(count); //кол-во листов в правой ветке
+                            l = l.divide(count);
                         }
                     }
                 }
@@ -67,7 +67,7 @@ public class RankingAlgorithm {
                 BigInteger sum = BigInteger.ZERO;
 
                 for (int i = 0; i < n; i++) {
-                    if (sum.add( BigInteger.ONE).compareTo(l) > 0) {
+                    if (sum.add(BigInteger.ONE).compareTo(l) > 0) {
                         v.add(tree.getOrNodeByIndex(node.getRoot().getAndId()).children.get(i).order);
                         break;
                     }

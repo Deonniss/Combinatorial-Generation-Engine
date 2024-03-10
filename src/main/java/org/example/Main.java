@@ -7,17 +7,6 @@ import java.util.Random;
 
 public class Main {
 
-    private static List<Integer> genList(int size, int size2) {
-        Random random = new Random();
-
-        List<Integer> list = new ArrayList<>();
-
-        for (int j = 0; j < size; j++) {
-            list.add(random.nextInt(size2));
-        }
-        return list;
-    }
-
     public static void main(String[] args) {
 
 //        simpleTest();
@@ -44,29 +33,41 @@ public class Main {
         System.out.println(RankingAlgorithm.unRank(rank, tree));
     }
 
+    private static List<Integer> genList(int elementCount, int maxValue) {
+        Random random = new Random();
+
+        List<Integer> list = new ArrayList<>();
+
+        for (int j = 0; j < elementCount; j++) {
+            list.add(random.nextInt(maxValue));
+        }
+        return list;
+    }
+
     private static void hardTest() {
-        int size = 1_000;
+        int elementCount = 20;
+        int maxValue = 7;
+        int listCount = 4;
         AndOrTree tree = new AndOrTree();
         List<List<Integer>> lists = new ArrayList<>();
-        for (int i = 0; i < 1_000; i++) {
-            lists.add(genList(size, size));
+        for (int i = 0; i < listCount; i++) {
+            lists.add(genList(elementCount, maxValue));
         }
         tree.create(lists);
-//        System.out.println(tree);
-//        List<Integer> list = genList(size);
-        List<Integer> list = genList(1_000, 1_000);
-        System.out.println(list);
+        System.out.println("дерево - " + tree);
+        List<Integer> list = genList(listCount, elementCount);
+        System.out.println("вариант для кодирования - " + list);
         Root root = new Root(NodeType.AND, 0, 0);
 
-
         long start1 = System.currentTimeMillis();
+        System.out.println("максимальный ранг - " + 4 * 20);
         BigInteger rank = RankingAlgorithm.rank(root, list, tree);
-        System.out.println("ранг - " + (System.currentTimeMillis() - start1));
-        System.out.println(rank);
+        System.out.println("время на ранг - " + (System.currentTimeMillis() - start1));
+        System.out.println("ранг код - " + rank);
 
         long start2 = System.currentTimeMillis();
-        System.out.println(RankingAlgorithm.unRank(rank, tree));
-        System.out.println("unранг - " + (System.currentTimeMillis() - start2));
+        System.out.println("unранг код - " + RankingAlgorithm.unRank(rank, tree));
+        System.out.println("время на unранг - " + (System.currentTimeMillis() - start2));
 
     }
 
