@@ -3,7 +3,7 @@ package ru.golovin.springalgrang.domain.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Table
+@Table(name = "users")
 @Data
 @Entity
 public class User {
@@ -15,4 +15,9 @@ public class User {
 
     @Column(unique = true, nullable = false)
     private String username;
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

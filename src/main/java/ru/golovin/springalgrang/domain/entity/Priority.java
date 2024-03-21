@@ -15,4 +15,9 @@ public class Priority {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

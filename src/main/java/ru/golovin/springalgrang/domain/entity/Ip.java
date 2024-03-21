@@ -15,4 +15,9 @@ public class Ip {
 
     @Column(unique = true, nullable = false)
     private String address;
+
+    @Override
+    public String toString() {
+        return address;
+    }
 }

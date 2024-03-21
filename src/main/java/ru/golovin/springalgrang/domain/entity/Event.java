@@ -15,4 +15,9 @@ public class Event {
 
     @Column(unique = true, nullable = false)
     private String type;
+
+    @Override
+    public String toString() {
+        return type;
+    }
 }
