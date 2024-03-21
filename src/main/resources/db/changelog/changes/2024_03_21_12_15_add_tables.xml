@@ -14,11 +14,11 @@
     </changeSet>
 
     <changeSet id="2024_03_21_12_15_add_tables-2" author="golovin">
-        <createTable tableName="device">
+        <createTable tableName="ip">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints unique="true" nullable="false" primaryKey="true"/>
             </column>
-            <column name="name" type="varchar(32)">
+            <column name="address" type="varchar(32)">
                 <constraints unique="true" nullable="false"/>
             </column>
         </createTable>
@@ -40,29 +40,18 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints unique="true" nullable="false" primaryKey="true"/>
             </column>
-            <column name="priority" type="varchar(32)">
-                <constraints unique="true" nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="2024_03_21_12_15_add_tables-5" author="golovin">
-        <createTable tableName="event_code">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints unique="true" nullable="false" primaryKey="true"/>
-            </column>
-            <column name="code" type="int">
+            <column name="name" type="varchar(32)">
                 <constraints unique="true" nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="2024_03_21_12_15_add_tables-6" author="golovin">
-        <createTable tableName="event_status">
+        <createTable tableName="status">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints unique="true" nullable="false" primaryKey="true"/>
             </column>
-            <column name="status" type="varchar(32)">
+            <column name="name" type="varchar(32)">
                 <constraints unique="true" nullable="false"/>
             </column>
         </createTable>
