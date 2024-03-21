@@ -1,6 +1,9 @@
 package ru.golovin.springalgrang;
 
-import ru.golovin.springalgrang.algorithm.*;
+import ru.golovin.springalgrang.algorithm.AndOrTree;
+import ru.golovin.springalgrang.algorithm.NodeType;
+import ru.golovin.springalgrang.algorithm.RankingAlgorithm;
+import ru.golovin.springalgrang.algorithm.Root;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

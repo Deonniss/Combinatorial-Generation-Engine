@@ -1,4 +1,4 @@
-package ru.golovin.springalgrang.log;
+package ru.golovin.springalgrang.spam.log;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
