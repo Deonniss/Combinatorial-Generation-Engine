@@ -10,12 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import static ru.golovin.springalgrang.domain.entity.EntityType.*;
 
 @Component
 @RequiredArgsConstructor
 public class RandomEntityProvider {
+
+    private long DESIRED_LENGTH = 0;
 
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
@@ -33,6 +36,10 @@ public class RandomEntityProvider {
         map.put(IP, ipRepository.findAllObjects());
         map.put(STATUS, statusRepository.findAllObjects());
         map.put(PRIORITY, priorityRepository.findAllObjects());
+        DESIRED_LENGTH = Math.max(userRepository.count(),
+                Math.max(eventRepository.count(),
+                        Math.max(ipRepository.count(),
+                                Math.max(statusRepository.count(), priorityRepository.count()))));
     }
 
     public User getRandomUser() {
@@ -53,5 +60,54 @@ public class RandomEntityProvider {
 
     public Ip getRandomIp() {
         return (Ip) map.get(IP).get(random.nextInt(map.get(IP).size()));
+    }
+
+    public int getCountEntities(EntityType type) {
+        return map.get(type).size();
+    }
+
+    public List<String> getUsers() {
+        List<String> users = map.get(USER).stream()
+                .map(u -> ((User) u).getUsername())
+                .collect(Collectors.toList());
+        return padList(users);
+    }
+
+    public List<String> getEvents() {
+        List<String> events = map.get(EVENT).stream()
+                .map(e -> ((Event) e).getType())
+                .collect(Collectors.toList());
+        return padList(events);
+    }
+
+    public List<String> getPriorities() {
+        List<String> priorities = map.get(PRIORITY).stream()
+                .map(p -> ((Priority) p).getName())
+                .collect(Collectors.toList());
+        return padList(priorities);
+    }
+
+    public List<String> getStatuses() {
+        List<String> statuses = map.get(STATUS).stream()
+                .map(s -> ((Status) s).getName())
+                .collect(Collectors.toList());
+        return padList(statuses);
+    }
+
+    public List<String> getIps() {
+        List<String> ips = map.get(IP).stream()
+                .map(ip -> ((Ip) ip).getAddress())
+                .collect(Collectors.toList());
+        return padList(ips);
+    }
+
+    private List<String> padList(List<String> list) {
+        int currentSize = list.size();
+        if (currentSize < DESIRED_LENGTH) {
+            for (int i = currentSize; i < DESIRED_LENGTH; i++) {
+                list.add("");
+            }
+        }
+        return list;
     }
 }

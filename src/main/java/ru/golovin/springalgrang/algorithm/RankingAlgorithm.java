@@ -25,10 +25,10 @@ public class RankingAlgorithm {
         }
     }
 
-    public static List<Integer> unRank(BigInteger r, AndOrTree tree) {
+    public static List<String> unRank(BigInteger r, AndOrTree tree) {
         Stack<NodeContainer> stack = new Stack<>();
         stack.add(new NodeContainer(r, new Root(NodeType.AND, 0, 0)));
-        List<Integer> v = new ArrayList<>();
+        List<String> v = new ArrayList<>();
         while (!stack.empty()) {
             NodeContainer node = stack.pop();
             BigInteger l = node.getRank();
@@ -65,10 +65,10 @@ public class RankingAlgorithm {
             } else if (node.getRoot().getType() == NodeType.OR) {
                 int n = tree.getOrNodeByIndex(node.getRoot().getAndId()).children.size();
                 BigInteger sum = BigInteger.ZERO;
-
+//                l = l.subtract(BigInteger.ONE);
                 for (int i = 0; i < n; i++) {
                     if (sum.add(BigInteger.ONE).compareTo(l) > 0) {
-                        v.add(tree.getOrNodeByIndex(node.getRoot().getAndId()).children.get(i).order);
+                        v.add(tree.getOrNodeByIndex(node.getRoot().getAndId()).children.get(i).value);
                         break;
                     }
                     sum = sum.add(BigInteger.ONE);

@@ -18,9 +18,9 @@ public class AndOrTree {
         return temp.left;
     }
 
-    public void create(List<List<Integer>> tree) {
+    public void create(List<List<String>> tree) {
         AndNode tempRoot = null;
-        for (List<Integer> branch : tree) {
+        for (List<String> branch : tree) {
             if (root == null) {
                 root = new AndNode();
                 tempRoot = root;
@@ -30,7 +30,7 @@ public class AndOrTree {
             }
             tempRoot.left = new OrNode();
             int order = 0;
-            for (Integer value : branch) {
+            for (String value : branch) {
                 tempRoot.left.children.add(new Node(order++, value));
             }
         }
@@ -74,10 +74,10 @@ class OrNode {
 }
 
 class Node {
-    int value;
+    String value;
     int order;
 
-    public Node(int order, int value) {
+    public Node(int order, String value) {
         this.value = value;
         this.order = order;
     }
