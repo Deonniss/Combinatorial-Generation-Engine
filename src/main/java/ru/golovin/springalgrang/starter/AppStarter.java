@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import ru.golovin.springalgrang.spam.log.simple.LogSimpleSpammer;
 import ru.golovin.springalgrang.spam.log.upgrade.LogUpgradeSpammer;
 
-import java.math.BigInteger;
-
 @Component
 @RequiredArgsConstructor
 public class AppStarter {
@@ -19,16 +17,16 @@ public class AppStarter {
     public void init() throws InterruptedException {
 
 
-        logUpgradeSpammer.parseFile(
-                "Z:\\projects\\springAlgRang\\temp\\up-10_000_000_out-2024-03-22.0.log",
-                "Z:\\projects\\springAlgRang\\temp\\up-parse-out.log");
-//        logUpgradeSpammer.parse(BigInteger.valueOf(15148220));
+//        logUpgradeSpammer.parseFile(
+//                "Z:\\projects\\springAlgRang\\temp\\up-10_000_000_out-2024-03-22.0.log",
+//                "Z:\\projects\\springAlgRang\\temp\\up-parse-out.log");
+//        logUpgradeSpammer.parse(BigInteger.valueOf(113140246));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(2622215));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(12695258));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(6257051));
 
 
-//        logUpgradeSpammer.spam(10_000_000);
+//        logUpgradeSpammer.spam(10_000);
 //        logSimpleSpammer.spam(10_000_000);
 
 //        System.out.println(randomProvider.getRandomUser());

@@ -6,7 +6,7 @@ import lombok.Data;
 @Table(name = "users")
 @Data
 @Entity
-public class User {
+public class User implements EntityField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,11 @@ public class User {
 
     @Override
     public String toString() {
+        return username;
+    }
+
+    @Override
+    public String getField() {
         return username;
     }
 }

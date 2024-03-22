@@ -6,7 +6,7 @@ import lombok.Data;
 @Table
 @Data
 @Entity
-public class Event {
+public class Event implements EntityField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,11 @@ public class Event {
 
     @Override
     public String toString() {
+        return type;
+    }
+
+    @Override
+    public String getField() {
         return type;
     }
 }

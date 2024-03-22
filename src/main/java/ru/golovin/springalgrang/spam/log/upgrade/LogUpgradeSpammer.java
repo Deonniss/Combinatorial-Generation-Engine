@@ -7,7 +7,6 @@ import ru.golovin.springalgrang.algorithm.AndOrTree;
 import ru.golovin.springalgrang.algorithm.NodeType;
 import ru.golovin.springalgrang.algorithm.RankingAlgorithm;
 import ru.golovin.springalgrang.algorithm.Root;
-import ru.golovin.springalgrang.domain.entity.EntityType;
 import ru.golovin.springalgrang.spam.RandomEntityProvider;
 import ru.golovin.springalgrang.spam.Spammer;
 import ru.golovin.springalgrang.spam.log.Log;
@@ -34,11 +33,11 @@ public class LogUpgradeSpammer implements Spammer {
     @PostConstruct
     private void initTree() {
         List<List<String>> lists = new ArrayList<>();
-        lists.add(random.getUsers());
-        lists.add(random.getEvents());
-        lists.add(random.getIps());
-        lists.add(random.getStatuses());
-        lists.add(random.getPriorities());
+        lists.add(random.getEntities(USER));
+        lists.add(random.getEntities(EVENT));
+        lists.add(random.getEntities(IP));
+        lists.add(random.getEntities(STATUS));
+        lists.add(random.getEntities(PRIORITY));
         tree.create(lists);
     }
 
@@ -66,7 +65,7 @@ public class LogUpgradeSpammer implements Spammer {
                 if (parts.length == 2) {
                     String timestamp = parts[0];
                     BigInteger value = new BigInteger(parts[1].trim());
-                    String newLine = timestamp + " - " +  RankingAlgorithm.unRank(value, tree);
+                    String newLine = timestamp + " - " + RankingAlgorithm.unRank(value, tree);
                     pw.println(newLine);
                 }
             }

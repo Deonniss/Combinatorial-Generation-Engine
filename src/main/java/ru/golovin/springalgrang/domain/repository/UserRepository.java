@@ -2,6 +2,7 @@ package ru.golovin.springalgrang.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import ru.golovin.springalgrang.domain.entity.EntityField;
 import ru.golovin.springalgrang.domain.entity.User;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findRandom();
 
     @Query("select u from User u")
-    List<Object> findAllObjects();
+    List<EntityField> findAllObjects();
 }

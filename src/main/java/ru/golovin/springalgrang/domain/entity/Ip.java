@@ -6,7 +6,7 @@ import lombok.Data;
 @Table
 @Data
 @Entity
-public class Ip {
+public class Ip implements EntityField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,11 @@ public class Ip {
 
     @Override
     public String toString() {
+        return address;
+    }
+
+    @Override
+    public String getField() {
         return address;
     }
 }

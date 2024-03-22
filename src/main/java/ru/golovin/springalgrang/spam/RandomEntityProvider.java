@@ -27,7 +27,7 @@ public class RandomEntityProvider {
     private final IpRepository ipRepository;
 
     private final Random random = new Random();
-    private final Map<EntityType, List<Object>> map = new HashMap<>();
+    private final Map<EntityType, List<EntityField>> map = new HashMap<>();
 
     @PostConstruct
     private void init() {
@@ -66,39 +66,11 @@ public class RandomEntityProvider {
         return map.get(type).size();
     }
 
-    public List<String> getUsers() {
-        List<String> users = map.get(USER).stream()
-                .map(u -> ((User) u).getUsername())
+    public List<String> getEntities(EntityType type) {
+        List<String> users = map.get(type).stream()
+                .map(EntityField::getField)
                 .collect(Collectors.toList());
         return padList(users);
-    }
-
-    public List<String> getEvents() {
-        List<String> events = map.get(EVENT).stream()
-                .map(e -> ((Event) e).getType())
-                .collect(Collectors.toList());
-        return padList(events);
-    }
-
-    public List<String> getPriorities() {
-        List<String> priorities = map.get(PRIORITY).stream()
-                .map(p -> ((Priority) p).getName())
-                .collect(Collectors.toList());
-        return padList(priorities);
-    }
-
-    public List<String> getStatuses() {
-        List<String> statuses = map.get(STATUS).stream()
-                .map(s -> ((Status) s).getName())
-                .collect(Collectors.toList());
-        return padList(statuses);
-    }
-
-    public List<String> getIps() {
-        List<String> ips = map.get(IP).stream()
-                .map(ip -> ((Ip) ip).getAddress())
-                .collect(Collectors.toList());
-        return padList(ips);
     }
 
     private List<String> padList(List<String> list) {

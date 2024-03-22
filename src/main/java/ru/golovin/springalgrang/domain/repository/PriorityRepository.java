@@ -2,6 +2,7 @@ package ru.golovin.springalgrang.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import ru.golovin.springalgrang.domain.entity.EntityField;
 import ru.golovin.springalgrang.domain.entity.Priority;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface PriorityRepository extends JpaRepository<Priority, Long> {
     Priority findRandom();
 
     @Query("select p from Priority p")
-    List<Object> findAllObjects();
+    List<EntityField> findAllObjects();
 }

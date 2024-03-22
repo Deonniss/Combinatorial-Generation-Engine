@@ -6,7 +6,7 @@ import lombok.Data;
 @Table
 @Data
 @Entity
-public class Status {
+public class Status implements EntityField {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,11 @@ public class Status {
 
     @Override
     public String toString() {
+        return name;
+    }
+
+    @Override
+    public String getField() {
         return name;
     }
 }
