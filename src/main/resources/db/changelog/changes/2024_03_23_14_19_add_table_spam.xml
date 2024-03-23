@@ -1,0 +1,90 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024_03_23_14_19_add_table_spam-1" author="golovin">
+        <createTable tableName="simple_spam">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ip_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="priority_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024_03_23_14_20_add_fk_to_simple_spam" author="golovin">
+        <addForeignKeyConstraint
+                baseTableName="simple_spam"
+                baseColumnNames="user_id"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                constraintName="fk_user_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="simple_spam"
+                baseColumnNames="ip_id"
+                referencedTableName="ip"
+                referencedColumnNames="id"
+                constraintName="fk_ip_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="simple_spam"
+                baseColumnNames="event_id"
+                referencedTableName="event"
+                referencedColumnNames="id"
+                constraintName="fk_event_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="simple_spam"
+                baseColumnNames="status_id"
+                referencedTableName="status"
+                referencedColumnNames="id"
+                constraintName="fk_status_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"
+        />
+
+        <addForeignKeyConstraint
+                baseTableName="simple_spam"
+                baseColumnNames="priority_id"
+                referencedTableName="priority"
+                referencedColumnNames="id"
+                constraintName="fk_priority_id"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"
+        />
+    </changeSet>
+
+    <changeSet id="2024_03_23_14_19_add_table_spam-2" author="golovin">
+        <createTable tableName="upgrade_spam">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints unique="true" nullable="false" primaryKey="true"/>
+            </column>
+            <column name="rank" type="numeric(50, 0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
