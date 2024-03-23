@@ -32,6 +32,10 @@ public class RankGenerator {
         tree.create(lists);
     }
 
+    public AndOrTree getTree() {
+        return tree;
+    }
+
     public BigInteger getRandomRank() {
         List<Integer> point = new ArrayList<>();
         point.add(randomUtil.nextInt(random.getCountEntities(USER)));

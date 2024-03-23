@@ -29,16 +29,20 @@ public class AppStarter {
 //        databaseSimpleSpammer.spam(10_000_000);
 //        databaseUpgradeSpammer.spam(10_000_000);
 
-//        logUpgradeSpammer.parseFile(
-//                "Z:\\projects\\springAlgRank\\temp\\up-10_000_000_out-2024-03-22.0.log",
-//                "Z:\\projects\\springAlgRank\\temp\\up-parse-out.log");
+        logUpgradeSpammer.parseFile(
+                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-1_000_000_out-2024-03-23.0.log",
+                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-1_000_000_out-2024-03-23.0.log");
+        logUpgradeSpammer.parseFile(
+                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-100_000_out-2024-03-23.0.log",
+                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-100_000_out-2024-03-23.0.log");
+
 //        logUpgradeSpammer.parse(BigInteger.valueOf(113140246));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(2622215));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(12695258));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(6257051));
 
 
-        logUpgradeSpammer.spam(10_000_000);
+//        logUpgradeSpammer.spam(100_000);
 //        logSimpleSpammer.spam(10_000_000);
 
 //        System.out.println(randomProvider.getRandomUser());

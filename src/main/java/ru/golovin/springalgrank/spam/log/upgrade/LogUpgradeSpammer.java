@@ -19,9 +19,7 @@ public class LogUpgradeSpammer implements Spammer {
 
     private static final Log log = LogFactory.out.get(LogUpgradeSpammer.class);
 
-    private final ThreadExecutor threadExecutor;
     private final RankGenerator rankGenerator;
-    private final AndOrTree tree = new AndOrTree();
 
     @Override
     public void spam(int count) {
@@ -39,7 +37,7 @@ public class LogUpgradeSpammer implements Spammer {
                 if (parts.length == 2) {
                     String timestamp = parts[0];
                     BigInteger value = new BigInteger(parts[1].trim());
-                    String newLine = timestamp + " - " + RankingAlgorithm.unRank(value, tree);
+                    String newLine = timestamp + " - " + RankingAlgorithm.unRank(value, rankGenerator.getTree());
                     pw.println(newLine);
                 }
             }
