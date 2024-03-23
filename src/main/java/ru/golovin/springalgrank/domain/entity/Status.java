@@ -2,9 +2,11 @@ package ru.golovin.springalgrank.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table
 @Data
+@NoArgsConstructor
 @Entity
 public class Status implements EntityField {
 
@@ -15,6 +17,10 @@ public class Status implements EntityField {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    public Status(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {

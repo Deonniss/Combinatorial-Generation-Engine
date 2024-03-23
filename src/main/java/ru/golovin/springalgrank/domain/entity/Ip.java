@@ -2,9 +2,11 @@ package ru.golovin.springalgrank.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table
 @Data
+@NoArgsConstructor
 @Entity
 public class Ip implements EntityField {
 
@@ -15,6 +17,10 @@ public class Ip implements EntityField {
 
     @Column(unique = true, nullable = false)
     private String address;
+
+    public Ip(String address) {
+        this.address = address;
+    }
 
     @Override
     public String toString() {

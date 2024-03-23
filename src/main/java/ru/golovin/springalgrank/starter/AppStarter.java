@@ -3,6 +3,7 @@ package ru.golovin.springalgrank.starter;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.golovin.springalgrank.spam.database.simple.DatabaseSimpleSpammer;
 import ru.golovin.springalgrank.spam.log.simple.LogSimpleSpammer;
 import ru.golovin.springalgrank.spam.log.upgrade.LogUpgradeSpammer;
 
@@ -12,9 +13,13 @@ public class AppStarter {
 
     private final LogSimpleSpammer logSimpleSpammer;
     private final LogUpgradeSpammer logUpgradeSpammer;
+    private final DatabaseSimpleSpammer databaseSimpleSpammer;
 
     @PostConstruct
     public void init() throws InterruptedException {
+
+        long start = System.currentTimeMillis();
+        databaseSimpleSpammer.spam(1_000_000);
 
 
 //        logUpgradeSpammer.parseFile(
@@ -34,6 +39,8 @@ public class AppStarter {
 //            System.out.println(System.currentTimeMillis());
 //            Thread.sleep(1000);
 //        }
+
+        System.out.println(System.currentTimeMillis() - start);
     }
 
     /*

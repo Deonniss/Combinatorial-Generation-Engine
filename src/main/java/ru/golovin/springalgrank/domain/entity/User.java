@@ -2,9 +2,11 @@ package ru.golovin.springalgrank.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "users")
 @Data
+@NoArgsConstructor
 @Entity
 public class User implements EntityField {
 
@@ -15,6 +17,10 @@ public class User implements EntityField {
 
     @Column(unique = true, nullable = false)
     private String username;
+
+    public User(String username) {
+        this.username = username;
+    }
 
     @Override
     public String toString() {
