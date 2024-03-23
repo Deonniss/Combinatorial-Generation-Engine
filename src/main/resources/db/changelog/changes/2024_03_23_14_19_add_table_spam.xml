@@ -82,7 +82,7 @@
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints unique="true" nullable="false" primaryKey="true"/>
             </column>
-            <column name="rank" type="numeric(10, 0)">
+            <column name="rank" type="numeric(9, 0)">
                 <constraints nullable="false"/>
             </column>
         </createTable>

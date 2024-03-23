@@ -1,10 +1,10 @@
-package ru.golovin.springalgrank.spam.database.simple;
+package ru.golovin.springalgrank.spam.database.upgrade;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.golovin.springalgrank.domain.entity.SimpleSpam;
-import ru.golovin.springalgrank.domain.repository.SimpleSpamRepository;
-import ru.golovin.springalgrank.spam.RandomEntityProvider;
+import ru.golovin.springalgrank.algorithm.RankGenerator;
+import ru.golovin.springalgrank.domain.entity.UpgradeSpam;
+import ru.golovin.springalgrank.domain.repository.UpgradeSpamRepository;
 import ru.golovin.springalgrank.spam.Spammer;
 import ru.golovin.springalgrank.spam.ThreadExecutor;
 
@@ -13,24 +13,20 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class DatabaseSimpleSpammer implements Spammer {
+public class DatabaseUpgradeSpammer implements Spammer {
 
     private final ThreadExecutor threadExecutor;
-    private final RandomEntityProvider random;
-    private final SimpleSpamRepository repository;
+    private final UpgradeSpamRepository repository;
+    private final RankGenerator rankGenerator;
     private final int batchSize = 5_000;
 
     @Override
     public void spam(int count) {
         List<Runnable> tasks = new ArrayList<>();
-        List<SimpleSpam> spams = new ArrayList<>();
+        List<UpgradeSpam> spams = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            SimpleSpam spam = new SimpleSpam();
-            spam.setUser(random.getRandomUser());
-            spam.setEvent(random.getRandomEvent());
-            spam.setIp(random.getRandomIp());
-            spam.setStatus(random.getRandomStatus());
-            spam.setPriority(random.getRandomPriority());
+            UpgradeSpam spam = new UpgradeSpam();
+            spam.setRank(rankGenerator.getRandomRank());
             spams.add(spam);
             if (i % batchSize == 0 && i > 0) {
                 tasks.add(() -> repository.saveAll(new ArrayList<>(spams)));
