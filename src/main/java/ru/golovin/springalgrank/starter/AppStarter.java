@@ -19,7 +19,7 @@ public class AppStarter {
     public void init() throws InterruptedException {
 
         long start = System.currentTimeMillis();
-        databaseSimpleSpammer.spam(1_000_000);
+//        databaseSimpleSpammer.spam(1_000_000);
 
 
 //        logUpgradeSpammer.parseFile(
