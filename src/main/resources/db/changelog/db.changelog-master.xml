@@ -8,4 +8,5 @@
     <include file="/db/changelog/changes/2024_03_21_12_15_add_tables.xml"/>
     <include file="/db/changelog/changes/2024_03_21_15_15_insert_data.xml"/>
     <include file="/db/changelog/changes/2024_03_23_14_19_add_table_spam.xml"/>
+    <include file="/db/changelog/changes/2024_05_23_14_19_add_table_spam.xml"/>
 </databaseChangeLog>

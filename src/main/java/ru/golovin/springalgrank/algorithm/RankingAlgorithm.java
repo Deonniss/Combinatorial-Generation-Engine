@@ -2,6 +2,7 @@ package ru.golovin.springalgrank.algorithm;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -65,7 +66,6 @@ public class RankingAlgorithm {
             } else if (node.getRoot().getType() == NodeType.OR) {
                 int n = tree.getOrNodeByIndex(node.getRoot().getAndId()).children.size();
                 BigInteger sum = BigInteger.ZERO;
-//                l = l.subtract(BigInteger.ONE);
                 for (int i = 0; i < n; i++) {
                     if (sum.add(BigInteger.ONE).compareTo(l) > 0) {
                         v.add(tree.getOrNodeByIndex(node.getRoot().getAndId()).children.get(i).value);
@@ -75,7 +75,8 @@ public class RankingAlgorithm {
                 }
             }
         }
-        return v.reversed();
+        Collections.reverse(v);
+        return v;
     }
 }
 

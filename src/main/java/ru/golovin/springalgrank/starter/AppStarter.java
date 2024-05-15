@@ -24,17 +24,28 @@ public class AppStarter {
     @PostConstruct
     public void init() throws InterruptedException {
 
+//        logSimpleSpammer.spam(10_000_000);
+
         long start = System.currentTimeMillis();
+        System.out.println();
+//        for (int i = 0; i < 10_000_000; i++) {
+//            rankGenerator.getRandomRank();
+//        }
+        databaseUpgradeSpammer.spam(9_000_000);
+//        logUpgradeSpammer.parseFile("C:\\Users\\Dengo\\OneDrive\\Рабочий стол\\Combinatorial-Generation-Engine\\logs\\out-2024-05-14.0.log",
+//                "C:\\Users\\Dengo\\OneDrive\\Рабочий стол\\Combinatorial-Generation-Engine\\logs\\out-2024-05-14.0111.log");
+//        logUpgradeSpammer.spam(10_000_000);
+        System.out.println(System.currentTimeMillis() - start);
 //        databaseSimpleSpammer.spam(1_000_000);
 //        databaseSimpleSpammer.spam(10_000_000);
 //        databaseUpgradeSpammer.spam(10_000_000);
 
-        logUpgradeSpammer.parseFile(
-                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-1_000_000_out-2024-03-23.0.log",
-                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-1_000_000_out-2024-03-23.0.log");
-        logUpgradeSpammer.parseFile(
-                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-100_000_out-2024-03-23.0.log",
-                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-100_000_out-2024-03-23.0.log");
+//        logUpgradeSpammer.parseFile(
+//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-1_000_000_out-2024-03-23.0.log",
+//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-1_000_000_out-2024-03-23.0.log");
+//        logUpgradeSpammer.parseFile(
+//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-100_000_out-2024-03-23.0.log",
+//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-100_000_out-2024-03-23.0.log");
 
 //        logUpgradeSpammer.parse(BigInteger.valueOf(113140246));
 //        logUpgradeSpammer.parse(BigInteger.valueOf(2622215));
@@ -51,6 +62,6 @@ public class AppStarter {
 //            Thread.sleep(1000);
 //        }
 
-        System.out.println(System.currentTimeMillis() - start);
+
     }
 }
