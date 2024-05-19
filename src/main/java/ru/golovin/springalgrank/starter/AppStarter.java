@@ -9,6 +9,8 @@ import ru.golovin.springalgrank.spam.database.upgrade.DatabaseUpgradeSpammer;
 import ru.golovin.springalgrank.spam.log.simple.LogSimpleSpammer;
 import ru.golovin.springalgrank.spam.log.upgrade.LogUpgradeSpammer;
 
+import java.util.function.Supplier;
+
 @Component
 @RequiredArgsConstructor
 public class AppStarter {
@@ -19,49 +21,194 @@ public class AppStarter {
     private final DatabaseSimpleSpammer databaseSimpleSpammer;
     private final DatabaseUpgradeSpammer databaseUpgradeSpammer;
 
-    //4437053125
-
     @PostConstruct
-    public void init() throws InterruptedException {
+    public void init() {
 
-//        logSimpleSpammer.spam(10_000_000);
+        measureExecutionTime(() -> {
+            databaseUpgradeSpammer.spam(10000);
+            return 0;
+        });
 
-        long start = System.currentTimeMillis();
-        System.out.println();
-//        for (int i = 0; i < 10_000_000; i++) {
-//            rankGenerator.getRandomRank();
-//        }
-        databaseUpgradeSpammer.spam(9_000_000);
-//        logUpgradeSpammer.parseFile("C:\\Users\\Dengo\\OneDrive\\Рабочий стол\\Combinatorial-Generation-Engine\\logs\\out-2024-05-14.0.log",
-//                "C:\\Users\\Dengo\\OneDrive\\Рабочий стол\\Combinatorial-Generation-Engine\\logs\\out-2024-05-14.0111.log");
-//        logUpgradeSpammer.spam(10_000_000);
-        System.out.println(System.currentTimeMillis() - start);
-//        databaseSimpleSpammer.spam(1_000_000);
-//        databaseSimpleSpammer.spam(10_000_000);
-//        databaseUpgradeSpammer.spam(10_000_000);
-
-//        logUpgradeSpammer.parseFile(
-//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-1_000_000_out-2024-03-23.0.log",
-//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-1_000_000_out-2024-03-23.0.log");
-//        logUpgradeSpammer.parseFile(
-//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-100_000_out-2024-03-23.0.log",
-//                "Z:\\projects\\springAlgRank\\temp\\log_upgrade\\up-parse-100_000_out-2024-03-23.0.log");
-
-//        logUpgradeSpammer.parse(BigInteger.valueOf(113140246));
-//        logUpgradeSpammer.parse(BigInteger.valueOf(2622215));
-//        logUpgradeSpammer.parse(BigInteger.valueOf(12695258));
-//        logUpgradeSpammer.parse(BigInteger.valueOf(6257051));
+//        measureExecutionTime(() -> {
+//            databaseUpgradeSpammer.spam(5_000_000);
+//            return 0;
+//        });
 
 
-//        logUpgradeSpammer.spam(100_000);
-//        logSimpleSpammer.spam(10_000_000);
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\10000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\10000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\10000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\10000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\100000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\100000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\100000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\100000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\200000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\200000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\200000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\200000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\300000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\300000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\300000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\300000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\400000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\400000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\400000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\400000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\500000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\500000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\500000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\500000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\700000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\700000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\700000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\700000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1000000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1000000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1000000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1000000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1500000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1500000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1500000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\1500000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\2000000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\2000000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\2000000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\2000000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\3000000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\3000000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\3000000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\3000000-ur.log");
+//            return 0;
+//        });
+//
+//        //======
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\5000000.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\5000000-r.log");
+//            return 0;
+//        });
+//
+//        measureExecutionTime(() -> {
+//            logUpgradeSpammer.parseFileUnRank("F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\5000000-r.log",
+//                    "F:\\system\\desktop\\Combinatorial-Generation-Engine\\logs\\5000000-ur.log");
+//            return 0;
+//        });
 
-//        System.out.println(randomProvider.getRandomUser());
-//        while (true) {
-//            System.out.println(System.currentTimeMillis());
-//            Thread.sleep(1000);
-//        }
+        //======
+    }
 
-
+    public static <T> void measureExecutionTime(Supplier<T> task) {
+        long startTime = System.currentTimeMillis();
+        task.get();
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+        System.out.println("Execution time: " + duration + " miliseconds");
     }
 }

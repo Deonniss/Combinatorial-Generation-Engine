@@ -28,6 +28,7 @@ public class RandomEntityProvider {
 
     private final Random random = new Random();
     private final Map<EntityType, List<EntityField>> map = new HashMap<>();
+    private final Map<EntityType, Map<String, Integer>> mapByName = new HashMap<>();
 
     @PostConstruct
     private void init() {
@@ -36,6 +37,37 @@ public class RandomEntityProvider {
         map.put(IP, ipRepository.findAllObjects());
         map.put(STATUS, statusRepository.findAllObjects());
         map.put(PRIORITY, priorityRepository.findAllObjects());
+
+        Map<String, Integer> userFields = new HashMap<>();
+        for (EntityField field : map.get(USER)) {
+            userFields.put(field.getField(), field.getId().intValue() - 1);
+        }
+        mapByName.put(USER, userFields);
+
+        Map<String, Integer> eventFields = new HashMap<>();
+        for (EntityField field : map.get(EVENT)) {
+            eventFields.put(field.getField(), field.getId().intValue() - 1);
+        }
+        mapByName.put(EVENT, eventFields);
+
+        Map<String, Integer> ipFields = new HashMap<>();
+        for (EntityField field : map.get(IP)) {
+            ipFields.put(field.getField(), field.getId().intValue() - 1);
+        }
+        mapByName.put(IP, ipFields);
+
+        Map<String, Integer> statusFields = new HashMap<>();
+        for (EntityField field : map.get(STATUS)) {
+            statusFields.put(field.getField(), field.getId().intValue() - 1);
+        }
+        mapByName.put(STATUS, statusFields);
+
+        Map<String, Integer> priorityFields = new HashMap<>();
+        for (EntityField field : map.get(PRIORITY)) {
+            priorityFields.put(field.getField(), field.getId().intValue() - 1);
+        }
+        mapByName.put(PRIORITY, priorityFields);
+
         DESIRED_LENGTH = Math.max(userRepository.count(),
                 Math.max(eventRepository.count(),
                         Math.max(ipRepository.count(),
@@ -56,6 +88,26 @@ public class RandomEntityProvider {
 
     public Status getRandomStatus() {
         return (Status) map.get(STATUS).get(random.nextInt(map.get(STATUS).size()));
+    }
+
+    public Integer getIp(String ip) {
+        return mapByName.get(IP).get(ip);
+    }
+
+    public Integer getUser(String u) {
+        return mapByName.get(USER).get(u);
+    }
+
+    public Integer getEvent(String e) {
+        return mapByName.get(EVENT).get(e);
+    }
+
+    public Integer getPriority(String p) {
+        return mapByName.get(PRIORITY).get(p);
+    }
+
+    public Integer getStatus(String s) {
+        return mapByName.get(STATUS).get(s);
     }
 
     public Ip getRandomIp() {

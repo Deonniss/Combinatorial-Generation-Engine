@@ -229,4 +229,50 @@
         <insert tableName="priority"><column name="name" value="high"/></insert>
         <insert tableName="priority"><column name="name" value="critical"/></insert>
     </changeSet>
+
+    <changeSet id="2024_03_21_15_15_insert_data-6" author="golovin">
+        <insert tableName="ip"><column name="address" value="192.168.100.43"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.44"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.45"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.46"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.47"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.48"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.49"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.50"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.51"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.52"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.53"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.54"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.55"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.56"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.57"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.58"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.59"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.60"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.61"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.62"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.63"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.64"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.65"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.66"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.67"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.68"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.69"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.70"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.71"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.72"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.73"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.74"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.75"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.76"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.77"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.78"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.79"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.80"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.81"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.82"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.83"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.84"/></insert>
+        <insert tableName="ip"><column name="address" value="192.168.100.85"/></insert>
+    </changeSet>
 </databaseChangeLog>

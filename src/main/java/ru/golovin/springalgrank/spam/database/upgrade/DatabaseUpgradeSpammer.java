@@ -26,16 +26,16 @@ public class DatabaseUpgradeSpammer implements Spammer {
         List<UpgradeSpam> spams = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             UpgradeSpam spam = new UpgradeSpam();
-//            spam.setId(1L + i);
+            spam.setId(1L + i);
             spam.setRank(rankGenerator.getRandomRank());
             spams.add(spam);
             if (i % batchSize == 0 && i > 0) {
-                repository.saveAll(new ArrayList<>(spams));
-//                tasks.add(() -> repository.saveAll(new ArrayList<>(spams)));
+//                repository.saveAll(new ArrayList<>(spams));
+                tasks.add(() -> repository.saveAll(new ArrayList<>(spams)));
                 spams.clear();
             }
         }
-//        threadExecutor.execute(tasks);
+        threadExecutor.execute(tasks);
         if (!spams.isEmpty()) {
             repository.saveAll(spams);
             spams.clear();
